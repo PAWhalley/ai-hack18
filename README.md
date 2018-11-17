@@ -1,1 +1,1 @@
-# ai-hack18
+# ai-hack18: %69
