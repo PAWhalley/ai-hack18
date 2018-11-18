@@ -17,16 +17,16 @@ def isnan(v):
 timedate = data["date"].values
 timstr = data["time"].values
 
-timestamp = np.zeros(timedate.shape[0])
+timestamp = np.zeros(timedate.shape[0]+1)
 
 #timstr= [x for x in timstr if (str(x) != "nan")]
 #timstr = [x for x in timstr if type(x) != float]
 for s in range(timedate.shape[0]):
     if len(timedate[s]) > 9:
         #timestamp[s] = float('NaN')
-        timestamp[s] = time.mktime(time.strptime(timedate[s], '%d/%m/%Y'))
+        timestamp[s+1] = time.mktime(time.strptime(timedate[s], '%d/%m/%Y'))
     else:
-        timestamp[s] = (int(timedate[s]) - (25569))*24*60*60
+        timestamp[s+1] = (int(timedate[s]) - (25569))*24*60*60
 
     if (s%10000==0):
         print(s)
@@ -34,9 +34,9 @@ for s in range(timedate.shape[0]):
 for s in range(timstr.shape[0]):
     if type(timstr[s]) == type("f"):
         x = time.strptime(timstr[s].split(" ")[1], "%H:%M:%S")
-        timestamp[s] += datetime.timedelta(hours=x.tm_hour,minutes=x.tm_min,seconds=x.tm_sec).total_seconds()
+        timestamp[s+1] += datetime.timedelta(hours=x.tm_hour,minutes=x.tm_min,seconds=x.tm_sec).total_seconds()
     else:
-        timestamp[s] = float('NaN')
+        timestamp[s+1] = float('NaN')
 
     if (s%10000==0):
         print(s)
