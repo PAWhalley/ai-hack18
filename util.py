@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 
 def read_with_timestamps(path):
-	data = pd.read_csv(path, sep=",")
-	timestamps = pd.read_csv("timestamps.csv", sep=",")
+	data = pd.read_csv(path, sep=",", low_memory=False)
+	timestamps = pd.read_csv("timestamps.csv", sep=",", low_memory=False)
 
 	data.insert(0, "timestamp", timestamps)
 

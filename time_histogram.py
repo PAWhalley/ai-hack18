@@ -1,7 +1,9 @@
-import pandas as pd
+import pandas
 import numpy as np
 import matplotlib.pyplot as plt
 import util
+import os
+
 
 def time_histogram(feature, data, value=1, bin_size=60*60*24):
 	df = util.remove_missing(data, "timestamp")
