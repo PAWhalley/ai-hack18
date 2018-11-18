@@ -6,7 +6,7 @@ def ffilt(timestamp,time_series,amp_threshold,freq_threshold,snip_ends=0):
 	mean_ts = ts.stationary_mean(time_series)
 	y = time_series - mean_ts
 	y = y[snip_ends:-snip_ends]
-	x = timestamp
+	x = timestamp[snip_ends:-snip_ends]
 	fy = np.fft.fft(y)
 	old_fy = fy
 	freq = np.fft.fftfreq(len(y), 1)
@@ -22,22 +22,6 @@ def ffilt(timestamp,time_series,amp_threshold,freq_threshold,snip_ends=0):
 	# Take inverse Fourier transform
 	ffy = np.fft.ifft(fy)
 
-	# Plot figures
-	fig1 = plt.figure()
-	plt.plot(freq,old_fy,'k')
-	plt.plot(freq,fy,'r')
-
-	plt.title("Frequency plot")
-	fig2 = plt.figure()
-	plt.plot(x[snip_ends:-snip_ends], y,'k')
-	plt.plot(x[snip_ends:-snip_ends],ffy,'r')
-	plt.title("Filtered time series")
-	plt.show()
-
-	# # Dominant frequency
-
-	# dom = max(np.abs(fy))
-
-	# return dom
+	return x,ffy
 
 
