@@ -22,6 +22,6 @@ def ffilt(timestamp,time_series,amp_threshold,freq_threshold,snip_ends=0):
 	# Take inverse Fourier transform
 	ffy = np.fft.ifft(fy)
 
-	return x,ffy
+	return x, fy, ffy
 
 
