@@ -40,7 +40,7 @@ DayShift = 16436
 def daily_data(x = data, DayShift = 16436):
     new_data = []
     for index in x:
-        new_value = ( (index - DayShift * 3600 * 24) - ( (index - DayShift * 3600 * 24) % (3600 * 24) ) ) /3600 / 24
+        new_value = (int( (int(index) - DayShift * 3600 * 24)) - int(( (int(index) - DayShift * 3600 * 24) % (3600 * 24) ) ) /3600 / 24)
         new_data.append(new_value)
     return new_data
 
@@ -59,5 +59,30 @@ new_data = remove_monthly()
 print(len(new_data), print(new_data))
 
 
-plt.plot(x, new_data)
-plt.show()
+##Plotting weekly and monthly CMAs
+
+os.chdir(r"C:\Users\REMY\Documents\5. Coding\Hackatons\2018 AI Hack\Data\Road Accident")
+
+fig = plt.figure()
+plt.plot(x, y)
+plt.title("CMA")
+plt.xlabel('Time [s]')
+plt.ylabel('Casualties')
+
+
+
+
+fig1 = plt.figure()
+plt.plot(x, CMAweekly)
+plt.title("Weekly CMA")
+plt.xlabel('Time [s]')
+plt.ylabel('Casualties')
+
+fig2 = plt.figure()
+plt.plot(x, CMAmonthly)
+plt.title("Monthly CMA")
+plt.xlabel('Time [s]')
+plt.ylabel('Casualties')
+#fig.plt.show()
+
+
