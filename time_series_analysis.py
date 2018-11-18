@@ -18,7 +18,6 @@ def histogram(data, feature=None, value=1, bin_size=60*60*24):
 
 	hist, __ = np.histogram(df["timestamp"], bins=bins)
 
-
 	x = (bins[:-1] + bins[1:]) / 2
 
 	return x, hist
