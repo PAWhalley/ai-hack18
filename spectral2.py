@@ -37,19 +37,18 @@ for i in range(len(fy)):
 
 dom_freq = freq[l]
 
+
+for i in range(fy.shape[0]):
+	if fy_abs[i] < 2000 or abs(freq[i]) > 10:
+		fy[i] = 0
+
 fig1 = plt.figure()
 plt.plot(freq[0:174], np.abs(fy)[0:174])
 plt.title('Frequency plot of accidents per day')
 plt.xlabel('Frequency')
 plt.ylabel('Amplitude')
-string = ["Time period = " + str(1/dom_freq) + " days"]
-plt.text(0.015, 5010, string, fontsize=8)
-fig1.savefig('freqplot.png')
+fig1.savefig('freqplot2.png')
 plt.show()
-
-for i in range(fy.shape[0]):
-	if fy_abs[i] < 00 or abs(freq[i]) > 0.03:
-		fy[i] = 0
 
 ffy = np.fft.ifft(fy)
 fy2 = y-ffy
@@ -61,7 +60,7 @@ plt.title('Seasonal trend of time series')
 plt.xlabel('Time')
 plt.ylabel('Number of accidents/day')
 plt.legend()
-fig2.savefig('filteredplot.png')
+fig2.savefig('filteredplot2.png')
 plt.show()
 
 
