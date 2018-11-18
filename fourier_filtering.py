@@ -35,9 +35,9 @@ def ffilt(timestamp,time_series,amp_threshold,freq_threshold,snip_ends=0):
 	plt.show()
 
 	# # Dominant frequency
-	
+
 	# dom = max(np.abs(fy))
 
-	return dom
+	# return dom
 
 
