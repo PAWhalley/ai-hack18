@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 import util
 
@@ -31,12 +30,13 @@ def stationary_mean(sequence):
 
 def stationary_acvs(sequence, max_tau):
 	mean = stationary_mean(sequence)
-	s_tau = []
+	seq_size = min(max_tau, sequence.shape[0])
+	s_tau = np.zeros(seq_size)
 
-	for tau in range(max_tau):
+	for tau in range(seq_size):
 		x_roll_tau = np.roll(sequence, tau)
 
-		s_sum = np.sum(np.cross(sequence[tau:] - mean, x_roll_tau[tau] - mean))
-		s_tau[tau] = s_sum / (sequence.size - tau)
+		s_sum = np.dot(sequence[tau:] - mean, x_roll_tau[tau:] - mean)
+		s_tau[tau] = s_sum / (sequence.shape[0] - tau)
 
 	return s_tau
