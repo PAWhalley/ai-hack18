@@ -5,6 +5,9 @@ import util
 import os
 
 
+## function generating the vector (timestamps, histogram associated to the feature = value, histogram
+# without restricting to a value)
+
 def time_histogram(feature, data, value=1, bin_size=60*60*24):
 	df = util.remove_missing(data, "timestamp")
 	df_feature = df[np.equal(df[feature], value)]
